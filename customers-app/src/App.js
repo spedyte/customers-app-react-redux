@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
+import CustomerContainer from './containers/CustomerContainer';
 
 class  App extends Component{
 renderHome = () => <HomeContainer/>;
@@ -11,8 +12,6 @@ renderHome = () => <HomeContainer/>;
   renderCustomerContainer = () =><h1>Customer Container</h1>;
 
   renderCustomerListContainer = () => <CustomersContainer/>;
-
-  renderCustomerNewContainer = () =><h1>Customer New Container</h1>;
   
   render(){
     return (
@@ -24,7 +23,7 @@ renderHome = () => <HomeContainer/>;
         <Route exact path="/customers" component={this.renderCustomerListContainer}></Route>
         <Switch>
          <Route path="/customers/new" component={this.renderCustomerNewContainer}></Route>
-         <Route path="/customers/:dni" component={this.renderCustomerContainer}></Route>
+         <Route path="/customers/:dni" render={props=><CustomerContainer dni={props.match.params.dni}/>}></Route>
         </Switch>
         </div>
       </Router>

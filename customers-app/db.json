@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "customers":[
+    {
+        "dni":"2700",
+        "name":"Juan Perez",
+        "age":37
+    },
+    {
+        "dni":"2701",
+        "name":"Luis Gomez",
+        "age":38
+    },
+    {
+        "dni":"2702",
+        "name":"Alma Perez",
+        "age":39
+    }
+]
+}
