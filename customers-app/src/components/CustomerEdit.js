@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {reduxForm,Field, isSubmitting} from 'redux-form'; 
+import {reduxForm,Field, isSubmitting, submitSucceeded,pristine} from 'redux-form'; 
 import {connect} from 'react-redux';
 import { setPropsAsInitial } from '../helpers/setPropsAsInitial';
 import CustomersActions from './../components/CustomersActions';
+import { Prompt } from 'react-router-dom';
 
 //validaciones a nivel local
 const MyField = ({type,input,meta,label,name})=>(
@@ -38,24 +39,33 @@ const validate = values =>{
 //     !value && "Este campo es requerido"
 // );
 
-const CustomerEdit = ({name,dni,age,handleSubmit,submitting,onBack}) => {
+const toNumber =value=> value && Number(value);
+const toUpper =value=> value && value.toUpperCase();
+const toCamelCaseM = value => value && value.toLowerCase();
+const onlyGrow = (value,previousValue,values) => 
+    value && previousValue && (value>previousValue? value:previousValue);
+
+const CustomerEdit = ({name,dni,age,handleSubmit,submitting,onBack,pristine,submitSucceeded}) => {
     return (
         <div>
             <h2>Edicion del cliente</h2>
             <form onSubmit={handleSubmit}>
                     <Field name="name" component={MyField} type="text"
-                             label="Nombre"></Field>
+                             label="Nombre" parse={toUpper} format={toCamelCaseM}></Field>
 
                     <Field name="dni" component={MyField} type="text"
                             validate={[isNumber]} label="Dni"></Field>
 
                     <Field name="age" component={MyField} type="number" 
-                    validate={isNumber} label="Edad"></Field>
+                    validate={isNumber} label="Edad" parse={toNumber} normalize={onlyGrow}></Field>
                     
                     <CustomersActions>
-                        <button type="submit" disabled={submitting}>Aceptar</button>
-                        <button onClick={onBack}>Cancelar</button>
+                        <button type="submit" disabled={pristine || submitting}>Aceptar</button>
+                        <button type="button"  disabled={submitting} onClick={onBack}>Cancelar</button>
                     </CustomersActions>
+                    {/* pristine es una propiedad de react routing para saber si se cambio el formulario */}
+                    <Prompt when={!pristine && !submitSucceeded}
+                    message="Se perderán los datos si continua"></Prompt>
             </form>
         </div>
     );

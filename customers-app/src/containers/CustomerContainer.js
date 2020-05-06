@@ -9,6 +9,7 @@ import CustomerData from './../components/CustomerData';
 import CustomerEdit from './../components/CustomerEdit';
 import {fetchCustomers} from './../actions/fetchCustomers';
 import {updateCustomer} from './../actions/updateCustomer';
+import { SubmissionError } from 'redux-form';
 
 class CustomerContainer extends Component {
     //<p>Datos del Cliente {this.props.customer.name}</p>
@@ -20,7 +21,12 @@ class CustomerContainer extends Component {
     
     handleSubmit = (values) =>{
         const {id}=values;
-        return this.props.updateCustomer(id,values);
+        return this.props.updateCustomer(id,values);//El siguiente codigo maneja el error recibido desde el SERVER
+        // .then(r=>{
+        //     if(r.error){//aqui es forzoso .error porque es sintaxis del Promiserejected
+        //         throw new SubmissionError(r.payload);
+        //     }
+        // })
     }
 
     handleOnSubmitSuccess =()=>{
