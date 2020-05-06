@@ -6,6 +6,9 @@ import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
 import CustomerContainer from './containers/CustomerContainer';
 
+//Para echar a andar el servidor NODE con nuestra base db.json
+//json-server --watch db.json --port 3001
+
 class  App extends Component{
 renderHome = () => <HomeContainer/>;
 

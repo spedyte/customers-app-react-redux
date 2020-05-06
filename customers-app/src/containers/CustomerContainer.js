@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Route} from 'react-router-dom';
+import {Route,withRouter} from 'react-router-dom';
 
 import AppFrame from '../components/AppFrame';
 import {getCustomerByDni} from './../selectors/customers';
@@ -11,11 +11,20 @@ import CustomerEdit from './../components/CustomerEdit';
 class CustomerContainer extends Component {
     //<p>Datos del Cliente {this.props.customer.name}</p>
 
+    handleSubmit = (values) =>{
+        console.log(JSON.stringify(values));
+    }
+
+    handleOnBack =()=>{
+        this.props.history.goBack();
+    }
+
     renderBody =() =>(
         <Route path="/customers/:dni/edit" children={
             ({match})=>{
                 const CustomerControl = match ? CustomerEdit : CustomerData; //Definicion dinamica de los componentes
-                return <CustomerControl {...this.props.customer} />
+                return <CustomerControl {...this.props.customer} onSubmit={this.handleSubmit}
+                onBack={this.handleOnBack} />
             }
         }>
         </Route>
@@ -41,4 +50,4 @@ const mapStateToProps = (state,props) =>({
     customer:  getCustomerByDni(state,props),
 });
 
-export default connect (mapStateToProps,null)(CustomerContainer);
+export default withRouter(connect (mapStateToProps,null)(CustomerContainer));
