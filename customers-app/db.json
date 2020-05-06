@@ -16,21 +16,24 @@
   "profile": {
     "name": "typicode"
   },
-  "customers":[
+  "customers": [
     {
-        "dni":"2700",
-        "name":"Juan Perez",
-        "age":37
+      "id": "2700",
+      "dni": "2700",
+      "name": "Juan Perezs",
+      "age": 37
     },
     {
-        "dni":"2701",
-        "name":"Luis Gomez",
-        "age":38
+      "id": "2701",
+      "dni": "2701",
+      "name": "Luis Gomez",
+      "age": 38
     },
     {
-        "dni":"2702",
-        "name":"Alma Perez",
-        "age":39
+      "id": "2702",
+      "dni": "2702",
+      "name": "Alma Perez",
+      "age": 39
     }
-]
+  ]
 }
