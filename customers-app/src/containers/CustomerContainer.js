@@ -23,6 +23,10 @@ class CustomerContainer extends Component {
         return this.props.updateCustomer(id,values);
     }
 
+    handleOnSubmitSuccess =()=>{
+        this.props.history.goBack();
+    }
+
     handleOnBack =()=>{
         this.props.history.goBack();
     }
@@ -32,6 +36,7 @@ class CustomerContainer extends Component {
             ({match})=>{
                 const CustomerControl = match ? CustomerEdit : CustomerData; //Definicion dinamica de los componentes
                 return <CustomerControl {...this.props.customer} onSubmit={this.handleSubmit}
+                onSubmitSuccess={this.handleOnSubmitSuccess}
                 onBack={this.handleOnBack} />
             }
         }>
