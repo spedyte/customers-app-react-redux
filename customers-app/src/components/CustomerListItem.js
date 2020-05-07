@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 
 const CustomerListItem = ({name,editAction,delAction,urlPath,dni}) => {
     return (
-        <div>
             <div className="customers-list-item">
                 <div className="field">
                     <Link to={`${urlPath}${dni}`}>{name}</Link>
@@ -16,7 +15,6 @@ const CustomerListItem = ({name,editAction,delAction,urlPath,dni}) => {
                     <Link to={`${urlPath}${dni}/del`}>{delAction}</Link>
                 </div>
             </div>
-        </div>
     );
 };
 
