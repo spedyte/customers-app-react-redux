@@ -4,6 +4,8 @@ import {reduxForm,Field, isSubmitting, submitSucceeded,pristine} from 'redux-for
 import { setPropsAsInitial } from '../helpers/setPropsAsInitial';
 import CustomersActions from './../components/CustomersActions';
 import { Prompt } from 'react-router-dom';
+import { CUSTOMER_EDIT } from '../constants/permissions';
+import {accessControl} from './../helpers/accessControl';
 
 //Estas validaciones a nivel de Field tiene prioridad sobre las validaciones a nivel global
 const isNumber = value =>(
@@ -101,4 +103,4 @@ const CustomerEditForm= reduxForm(
         validate //validacion a nivel global
     })(CustomerEdit);
 
-export default setPropsAsInitial(CustomerEditForm);
+export default accessControl([CUSTOMER_EDIT])(setPropsAsInitial(CustomerEditForm));
