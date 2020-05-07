@@ -30,6 +30,7 @@ class CustomerContainer extends Component {
     }
 
     handleOnSubmitSuccess =()=>{
+        console.log("regresando de INSERT");
         this.props.history.goBack();
     }
 
